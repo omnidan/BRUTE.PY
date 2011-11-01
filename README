@@ -1,0 +1,10 @@
+BRUTE.PY
+    by Daniel Bugl
+--
+BRUTE.PY is a simple bruteforcer coded in python. You can easily
+extend it by adding modes.
+Disclaimer: This script is for educational purposes only.
+	I am not responsible for how you use this program
+--
+Copyright (c) 2011, Daniel Bugl
+All rights reserved.
