@@ -123,7 +123,7 @@ def mode_N():
 
 def mode_s():
 	global brutes
-	brutes += "!$%()=?*#/*-"
+	brutes += "!$%()=?*#/-"
 
 for mode in modes:
 	for m in mode_list:
