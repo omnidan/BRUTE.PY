@@ -80,6 +80,8 @@ mode_list = [
 	["t", "mode_t", 0],
 	["r", "mode_r", 1],
 	["f", "mode_f", 1],
+	["c", "mode_c", 1],
+	["l", "mode_l", 1],
 ]
 
 brutes = ""
@@ -90,6 +92,16 @@ text_instead_url = False
 
 rainbow_on = False
 rainbows = []
+
+logfile = None
+
+def mode_c(charlimit):
+	global chars
+	chars = charlimit
+
+def mode_l(lfile):
+	global logfile
+	logfile = str(lfile)
 
 def mode_f(failstring):
 	global fail
@@ -146,6 +158,10 @@ max_chars = chars
 burl = attack
 
 base = len(brutes)
+
+if logfile != None:
+	f.close()
+	f = open(logfile, "w")
 
 start_time = time.time()
 
