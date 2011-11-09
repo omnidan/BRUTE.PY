@@ -79,6 +79,7 @@ mode_list = [
 	["d", "mode_d", 0],
 	["t", "mode_t", 0],
 	["r", "mode_r", 1],
+	["f", "mode_f", 1],
 ]
 
 brutes = ""
@@ -89,6 +90,10 @@ text_instead_url = False
 
 rainbow_on = False
 rainbows = []
+
+def mode_f(failstring):
+	global fail
+	fail = str(failstring)
 
 def mode_r(rainbow):
 	global rainbows
@@ -147,6 +152,7 @@ start_time = time.time()
 log(":)", "Simple Bruteforcer [:|] Version %s [:(]" % version)
 log(">:|", "Attacking '%s'..." % burl)
 log(">:)", "Brutes: '%s'" % brutes)
+log(">:)", "Fail-string: '%s'" % fail)
 log(">:)", "Minimum characters: %d" % min_chars)
 log(">:)", "Maximum characters: %d" % max_chars)
 

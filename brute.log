@@ -1,6 +1,7 @@
-[30.10.11|21:25:29] [:)] Simple Bruteforcer [:|] Version 0.9.1_4 [:(]
-[30.10.11|21:25:29] [>:|] Attacking 'testa'...
-[30.10.11|21:25:29] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
-[30.10.11|21:25:29] [>:)] Minimum characters: 1
-[30.10.11|21:25:29] [>:)] Maximum characters: 10
-[30.10.11|21:25:29] [:|] Starting bruteforce in 5 seconds.
+[09.11.11|21:35:25] [:)] Simple Bruteforcer [:|] Version 0.9.1_4 [:(]
+[09.11.11|21:35:25] [>:|] Attacking 'test'...
+[09.11.11|21:35:25] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
+[09.11.11|21:35:25] [>:)] Fail-string: 'Wrong'
+[09.11.11|21:35:25] [>:)] Minimum characters: 1
+[09.11.11|21:35:25] [>:)] Maximum characters: 10
+[09.11.11|21:35:25] [:|] Starting bruteforce in 5 seconds.
