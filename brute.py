@@ -51,7 +51,7 @@ import time
 import sys
 import math
 
-version = "0.9.1_4"
+version = "0.9.1_6"
 
 f = open("./brute.log", "w")
 
@@ -82,6 +82,7 @@ mode_list = [
 	["f", "mode_f", 1],
 	["c", "mode_c", 1],
 	["l", "mode_l", 1],
+	["p", "mode_p", 1],
 ]
 
 brutes = ""
@@ -94,6 +95,12 @@ rainbow_on = False
 rainbows = []
 
 logfile = None
+
+proxies = None
+
+def mode_p(proxy):
+	global proxies
+	proxies = {'http': proxy}
 
 def mode_c(charlimit):
 	global chars
@@ -169,6 +176,10 @@ log(":)", "Simple Bruteforcer [:|] Version %s [:(]" % version)
 log(">:|", "Attacking '%s'..." % burl)
 log(">:)", "Brutes: '%s'" % brutes)
 log(">:)", "Fail-string: '%s'" % fail)
+try:
+	log(">:)", "Using HTTP proxy: '%s'" % proxies['http'])
+except:
+	log(">:(", "No proxy set.")
 log(">:)", "Minimum characters: %d" % min_chars)
 log(">:)", "Maximum characters: %d" % max_chars)
 
@@ -216,7 +227,7 @@ for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 			rput = fail
 	else:
 		url = burl % brute
-		input = urllib.urlopen(url)
+		input = urllib.urlopen(url, proxies=proxies)
 		rput = input.read()
 	if rput.count(fail) == 0:
 		break
