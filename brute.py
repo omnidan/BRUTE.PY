@@ -51,7 +51,7 @@ import time
 import sys
 import math
 
-version = "0.9.1_6"
+version = "0.9.2"
 
 f = open("./brute.log", "w")
 
@@ -83,6 +83,8 @@ mode_list = [
 	["c", "mode_c", 1],
 	["l", "mode_l", 1],
 	["p", "mode_p", 1],
+	["P", "mode_P", 0],
+	["D", "mode_D", 0],
 ]
 
 brutes = ""
@@ -90,6 +92,9 @@ brutes = ""
 display_invalid = True
 
 text_instead_url = False
+use_post = False
+
+debug = False
 
 rainbow_on = False
 rainbows = []
@@ -97,6 +102,14 @@ rainbows = []
 logfile = None
 
 proxies = None
+
+def mode_D():
+	global debug
+	debug = True
+
+def mode_P():
+	global use_post
+	use_post = True
 
 def mode_p(proxy):
 	global proxies
@@ -227,8 +240,12 @@ for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 			rput = fail
 	else:
 		url = burl % brute
-		input = urllib.urlopen(url, proxies=proxies)
+		if use_post == True:
+			input = urllib.urlopen(url.split("?")[0], data=url.split("?")[1], proxies=proxies)
+		else:
+			input = urllib.urlopen(url, proxies=proxies)
 		rput = input.read()
+		if debug == True: print "Result: %s" % rput
 	if rput.count(fail) == 0:
 		break
 	else:

@@ -1,8 +1,11 @@
-[10.11.11|18:20:10] [:)] Simple Bruteforcer [:|] Version 0.9.1_6 [:(]
-[10.11.11|18:20:10] [>:|] Attacking 'test'...
-[10.11.11|18:20:10] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
-[10.11.11|18:20:10] [>:)] Fail-string: 'Wrong'
-[10.11.11|18:20:10] [>:)] Using HTTP proxy: test
-[10.11.11|18:20:10] [>:)] Minimum characters: 1
-[10.11.11|18:20:10] [>:)] Maximum characters: 10
-[10.11.11|18:20:10] [:|] Starting bruteforce in 5 seconds.
+[11.11.11|14:49:14] [:)] Simple Bruteforcer [:|] Version 0.9.1_6 [:(]
+[11.11.11|14:49:14] [>:|] Attacking 'http://localhost/test.php?test=a&pass=%s'...
+[11.11.11|14:49:14] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
+[11.11.11|14:49:14] [>:)] Fail-string: 'Wrong'
+[11.11.11|14:49:14] [>:(] No proxy set.
+[11.11.11|14:49:14] [>:)] Minimum characters: 1
+[11.11.11|14:49:14] [>:)] Maximum characters: 10
+[11.11.11|14:49:14] [:|] Starting bruteforce in 5 seconds.
+[11.11.11|14:49:17] [:|] Loading cannons
+[11.11.11|14:49:18] [:|] FIRE!!!
+[11.11.11|14:49:19] [:)] Done, the password is: 'a'! (Took 0sec to bruteforce)
