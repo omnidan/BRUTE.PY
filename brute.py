@@ -50,6 +50,7 @@ import urllib
 import time
 import sys
 import math
+import hashlib
 
 version = "0.9.2"
 
@@ -85,6 +86,7 @@ mode_list = [
 	["p", "mode_p", 1],
 	["P", "mode_P", 0],
 	["D", "mode_D", 0],
+	["h", "mode_h", 1],
 ]
 
 brutes = ""
@@ -100,8 +102,18 @@ rainbow_on = False
 rainbows = []
 
 logfile = None
-
 proxies = None
+
+hashing = None
+customhash = None
+
+def mode_h(hashmethod):
+	global hashing, customhash
+	hashmethod = hashmethod.lower()
+	if hashmethod[0] == "c" and hashmethod[1] == ":":
+		hashing = "custom"
+		customhash = ':'.join(hashmethod.split(":")[1:])
+	else: hashing = hashmethod
 
 def mode_D():
 	global debug
@@ -233,13 +245,23 @@ for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 		digits.reverse()
 		brute = "".join([brutes[d] for d in digits])
 
+	x = brute
+	if hashing == "custom" and customhash != None:
+		thash = eval(customhash) # customhash should result in something and use x as the text to hash
+	elif hashing != None:
+		m = hashlib.new(hashing)
+		m.update(x)
+		thash = m.hexdigest()
+	else:
+		thash = x
+
 	start_url = time.time()
 	if text_instead_url == True:
 		rput = burl
-		if rput != brute:
+		if rput != thash:
 			rput = fail
 	else:
-		url = burl % brute
+		url = burl % thash
 		if use_post == True:
 			input = urllib.urlopen(url.split("?")[0], data=url.split("?")[1], proxies=proxies)
 		else:
@@ -253,7 +275,7 @@ for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 		minutes = math.floor(the_time/60)
 		seconds = math.floor(the_time - (minutes*60))
 		if display_invalid == True:
-			log(":(", "'%s' was invalid. (%dmin %dsec) (%d/%d) (%dms)" % (brute, minutes, seconds, current, possibilities, round((time.time()-start_url)*1000)))
+			log(":(", "'%s' ('%s') was invalid. (%dmin %dsec) (%d/%d) (%dms)" % (brute, thash, minutes, seconds, current, possibilities, round((time.time()-start_url)*1000)))
 	current += 1
 
 log(":)", "Done, the password is: '%s'! (Took %dsec to bruteforce)" % (brute, time.time()-start_time))
