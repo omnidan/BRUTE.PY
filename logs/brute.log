@@ -1,0 +1,8 @@
+[26.11.11|13:26:29] [:)] Simple Bruteforcer [:|] Version 0.9.3 [:(]
+[26.11.11|13:26:29] [>:|] Attacking 'Logging test'...
+[26.11.11|13:26:29] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
+[26.11.11|13:26:29] [>:)] Fail-string: 'Wrong'
+[26.11.11|13:26:29] [>:(] No proxy set.
+[26.11.11|13:26:29] [>:)] Minimum characters: 1
+[26.11.11|13:26:29] [>:)] Maximum characters: 10
+[26.11.11|13:26:29] [:|] Starting bruteforce in 5 seconds.

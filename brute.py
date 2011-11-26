@@ -52,9 +52,9 @@ import sys
 import math
 import hashlib
 
-version = "0.9.3"
+version = "0.9.4"
 
-f = open("./brute.log", "w")
+f = open("./logs/brute.log", "w")
 
 def log(status, message):
 	print "[%s] [%s] %s" % (time.strftime("%d.%m.%y|%H:%M:%S"), status, message)
@@ -111,7 +111,7 @@ base = len(brutes)
 
 if logfile != None:
 	f.close()
-	f = open(logfile, "w")
+	f = open("./logs/" + logfile, "w")
 
 start_time = time.time()
 
