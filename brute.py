@@ -52,7 +52,7 @@ import sys
 import math
 import hashlib
 
-version = "0.9.2"
+version = "0.9.3"
 
 f = open("./brute.log", "w")
 
@@ -65,94 +65,12 @@ if len(sys.argv) < 3:
 	exit()
 
 # Configuration variables
-modes = sys.argv[2] # a = abcde..., A = ABCDE..., N = 0123..., s = $%!..., o = OWN BRUTES (requires a third argument)
-chars = 10 # Number of characters
-attack = sys.argv[1] # URL to attack, use %s for password placeholder
-fail = "Wrong" # Fail string
+execfile("config.py")
 # /Configuration variables
-
-mode_list = [
-	["a", "mode_a", 0],
-	["o", "mode_o", 1],
-	["A", "mode_A", 0],
-	["N", "mode_N", 0],
-	["s", "mode_s", 0],
-	["d", "mode_d", 0],
-	["t", "mode_t", 0],
-	["r", "mode_r", 1],
-	["f", "mode_f", 1],
-	["c", "mode_c", 1],
-	["l", "mode_l", 1],
-	["p", "mode_p", 1],
-	["P", "mode_P", 0],
-	["D", "mode_D", 0],
-	["h", "mode_h", 1],
-]
 
 brutes = ""
 
-display_invalid = True
-
-text_instead_url = False
-use_post = False
-
-debug = False
-
-rainbow_on = False
-rainbows = []
-
-logfile = None
-proxies = None
-
-hashing = None
-customhash = None
-
-def mode_h(hashmethod):
-	global hashing, customhash
-	hashmethod = hashmethod.lower()
-	if hashmethod[0] == "c" and hashmethod[1] == ":":
-		hashing = "custom"
-		customhash = ':'.join(hashmethod.split(":")[1:])
-	else: hashing = hashmethod
-
-def mode_D():
-	global debug
-	debug = True
-
-def mode_P():
-	global use_post
-	use_post = True
-
-def mode_p(proxy):
-	global proxies
-	proxies = {'http': proxy}
-
-def mode_c(charlimit):
-	global chars
-	chars = charlimit
-
-def mode_l(lfile):
-	global logfile
-	logfile = str(lfile)
-
-def mode_f(failstring):
-	global fail
-	fail = str(failstring)
-
-def mode_r(rainbow):
-	global rainbows
-	rainbow_on = True
-	f = open(rainbow, "r")
-	for r in f.readlines():
-		rainbows.append(r[:-1])
-
-def mode_t():
-	global text_instead_url
-	text_instead_url = True
-
-def mode_d():
-	global display_invalid
-	display_invalid = False
+execfile("modes.py")
 
 def mode_a():
 	global brutes
