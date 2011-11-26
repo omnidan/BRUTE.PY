@@ -107,10 +107,12 @@ def mode_r(rainbow):
 	f = open(rainbow, "r")
 	for r in f.readlines():
 		rainbows.append(r[:-1])
+addMode("r", mode_r, 1)
 
 def mode_t():
 	global text_instead_url
 	text_instead_url = True
+addMode("t", mode_t, 0)
 
 def mode_d():
 	global display_invalid
