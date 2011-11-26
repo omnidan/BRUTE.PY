@@ -65,20 +65,32 @@ if len(sys.argv) < 3:
 	exit()
 
 # Configuration variables
-execfile("config.py")
+modes = sys.argv[2] # a = abcde..., A = ABCDE..., N = 0123..., s = $%!..., o = OWN BRUTES (requires a third argument)
+chars = 10 # Number of characters
+attack = sys.argv[1] # URL to attack, use %s for password placeholder
+fail = "Wrong" # Fail string
 # /Configuration variables
 
+# Brutes - Characters BRUTE.PY uses to bruteforce passwords
 brutes = ""
+# /Brutes - Characters BRUTE.PY uses to bruteforce passwords
+
+# Modes
+mode_list = []
+
+def addMode(mode, function, argc):
+	if hasattr(function, '__call__'):
+		mode_list.append([str(mode), function, int(argc)])
+	else:
+		log(":(", "Invalid mode function.")
 
 execfile("modes.py")
+# /Modes
 
+# Essential modes
 def mode_a():
 	global brutes
 	brutes += "abcdefghijklmnopqrstuvwxyz"
-
-def mode_o(bru):
-	global brutes
-	brutes += bru
 
 def mode_A():
 	global brutes
@@ -92,16 +104,24 @@ def mode_s():
 	global brutes
 	brutes += "!$%()=?*#/-"
 
+def mode_o(bru):
+	global brutes
+	brutes += bru
+
+addMode("a", mode_a, 0)
+addMode("A", mode_A, 0)
+addMode("N", mode_N, 0)
+addMode("s", mode_s, 0)
+addMode("o", mode_o, 1)
+# /Essential modes
+
 for mode in modes:
 	for m in mode_list:
 		if mode == m[0]:
-			executing = "%s(" % m[1]
+			executing = []
 			for ex in range(1, m[2]+1):
-				executing += "sys.argv[3]"
-				if ex != m[2]:
-					executing += ","
-			executing += ")"
-			eval(executing)
+				executing.append(sys.argv[3])
+			m[1](*executing)
 
 min_chars = 1
 max_chars = chars
@@ -148,6 +168,7 @@ while True:
 		break
 
 current = 0
+brute = ""
 for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 	if len(rainbows) > 0 and b < len(rainbows):
 		brute = rainbows[b]

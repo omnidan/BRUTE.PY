@@ -38,24 +38,20 @@
 # modes.py: The modes BRUTE.PY accepts.
 ###########################################################################
 
-mode_list = [
-#	["MODE", "FUNCTION", ARGC],
-	["a", "mode_a", 0],
-	["o", "mode_o", 1],
-	["A", "mode_A", 0],
-	["N", "mode_N", 0],
-	["s", "mode_s", 0],
-	["d", "mode_d", 0],
-	["t", "mode_t", 0],
-	["r", "mode_r", 1],
-	["f", "mode_f", 1],
-	["c", "mode_c", 1],
-	["l", "mode_l", 1],
-	["p", "mode_p", 1],
-	["P", "mode_P", 0],
-	["D", "mode_D", 0],
-	["h", "mode_h", 1],
-]
+import os, sys
+
+modules = []
+
+for m in os.listdir("modules"):
+	if m[0:2] != "__" and m[-3:] == ".py":
+		try:
+			mod = m.split(".")[0]
+			__import__("modules.%s" % mod, locals(), globals())
+			modules.append(sys.modules["modules.%s" % mod])
+		except:
+			log(":(", "Module importing error: %s" % mod);
+
+print modules
 
 display_invalid = True
 

@@ -1,8 +1,11 @@
-[26.11.11|13:26:29] [:)] Simple Bruteforcer [:|] Version 0.9.3 [:(]
-[26.11.11|13:26:29] [>:|] Attacking 'Logging test'...
-[26.11.11|13:26:29] [>:)] Brutes: 'abcdefghijklmnopqrstuvwxyz'
-[26.11.11|13:26:29] [>:)] Fail-string: 'Wrong'
-[26.11.11|13:26:29] [>:(] No proxy set.
-[26.11.11|13:26:29] [>:)] Minimum characters: 1
-[26.11.11|13:26:29] [>:)] Maximum characters: 10
-[26.11.11|13:26:29] [:|] Starting bruteforce in 5 seconds.
+[27.11.11|00:41:18] [:)] Simple Bruteforcer [:|] Version 0.9.4 [:(]
+[27.11.11|00:41:18] [>:|] Attacking 'test'...
+[27.11.11|00:41:18] [>:)] Brutes: ''
+[27.11.11|00:41:18] [>:)] Fail-string: 'Wrong'
+[27.11.11|00:41:18] [>:(] No proxy set.
+[27.11.11|00:41:18] [>:)] Minimum characters: 1
+[27.11.11|00:41:18] [>:)] Maximum characters: 10
+[27.11.11|00:41:18] [:|] Starting bruteforce in 5 seconds.
+[27.11.11|00:41:21] [:|] Loading cannons
+[27.11.11|00:41:22] [:|] FIRE!!!
+[27.11.11|00:41:23] [:)] Done, the password is: ''! (Took 0sec to bruteforce)
