@@ -42,91 +42,64 @@
 # Author:
 #	Copyright (c) 2011 Daniel Bugl (Daniel0108)
 ###########################################################################
-# modes.py: The modes BRUTE.PY accepts.
+# ./modules/main.py: The main modes for BRUTE.PY
 ###########################################################################
 
-import os, sys
+def mode_h(hashmethod):
+	global hashing, customhash
+	hashmethod = hashmethod.lower()
+	if hashmethod[0] == "c" and hashmethod[1] == ":":
+		hashing = "custom"
+		customhash = ':'.join(hashmethod.split(":")[1:])
+	else: hashing = hashmethod
 
-mode_list = []
-modules = []
+def mode_D():
+	global debug
+	debug = True
 
-# Essential variables
-display_invalid = True
+def mode_P():
+	global use_post
+	use_post = True
 
-text_instead_url = False
-use_post = False
+def mode_p(proxy):
+	global proxies
+	proxies = {'http': proxy}
 
-debug = False
+def mode_c(charlimit):
+	global chars
+	chars = charlimit
 
-rainbow_on = False
-rainbows = []
+def mode_l(lfile):
+	global logfile
+	logfile = str(lfile)
 
-logfile = None
-proxies = None
+def mode_f(failstring):
+	global fail
+	fail = str(failstring)
 
-hashing = None
-customhash = None
-# /Essential variables
+def mode_r(rainbow):
+	global rainbows
+	rainbow_on = True
+	f = open(rainbow, "r")
+	for r in f.readlines():
+		rainbows.append(r[:-1])
 
-"""
-for m in os.listdir("modules"):
-	if m[0:2] != "__" and m[-3:] == ".py":
-		try:
-			mod = m.split(".")[0]
-			__import__("modules.%s" % mod, locals(), globals())
-			modules.append(sys.modules["modules.%s" % mod])
-		except:
-			log(":(", "Module importing error: %s" % m)
-"""
+def mode_t():
+	global text_instead_url
+	text_instead_url = True
 
-class module:
-	def addMode(self, mode, function, argc):
-		global mode_list
-		if hasattr(function, '__call__'):
-			mode_list.append([str(mode), function, int(argc)])
-		else:
-			log(":(", "Invalid mode function.")
+def mode_d():
+	global display_invalid
+	display_invalid = False
 
-self = module()
-
-for m in os.listdir("modules"):
-	if m[0:2] != "__" and m[-3:] == ".py":
-		try:
-			execfile("./modules/%s" % m)
-			__init__(self)
-		except:
-			log(":(", "Module booting error: %s" % m)
-
-# Essential modes
-def mode_a():
-	global brutes
-	brutes += "abcdefghijklmnopqrstuvwxyz"
-
-def mode_A():
-	global brutes
-	brutes += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-def mode_N():
-	global brutes
-	brutes += "0123456789"
-
-def mode_s():
-	global brutes
-	brutes += "!$%()=?*#/-"
-
-def mode_o(bru):
-	global brutes
-	brutes += bru
-
-self.addMode("a", mode_a, 0)
-self.addMode("A", mode_A, 0)
-self.addMode("N", mode_N, 0)
-self.addMode("s", mode_s, 0)
-self.addMode("o", mode_o, 1)
-# /Essential modes
-"""
-for m in modules:
-	try:
-		m.__init__(self)
-	except:
-		log(":(", "Module booting error: %s" % mod)"""
+def __init__(self):
+	self.addMode("h", mode_h, 1)
+	self.addMode("D", mode_D, 0)
+	self.addMode("P", mode_P, 0)
+	self.addMode("p", mode_p, 1)
+	self.addMode("c", mode_c, 1)
+	self.addMode("l", mode_l, 1)
+	self.addMode("f", mode_f, 1)
+	self.addMode("r", mode_r, 1)
+	self.addMode("t", mode_t, 0)
+	self.addMode("d", mode_d, 0)

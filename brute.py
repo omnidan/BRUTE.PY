@@ -52,7 +52,7 @@ import sys
 import math
 import hashlib
 
-version = "0.9.5"
+version = "0.9.6"
 
 f = open("./logs/brute.log", "w")
 
@@ -76,44 +76,8 @@ brutes = ""
 # /Brutes - Characters BRUTE.PY uses to bruteforce passwords
 
 # Modes
-mode_list = []
-
-def addMode(mode, function, argc):
-	if hasattr(function, '__call__'):
-		mode_list.append([str(mode), function, int(argc)])
-	else:
-		log(":(", "Invalid mode function.")
-
 execfile("modes.py")
 # /Modes
-
-# Essential modes
-def mode_a():
-	global brutes
-	brutes += "abcdefghijklmnopqrstuvwxyz"
-
-def mode_A():
-	global brutes
-	brutes += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-def mode_N():
-	global brutes
-	brutes += "0123456789"
-
-def mode_s():
-	global brutes
-	brutes += "!$%()=?*#/-"
-
-def mode_o(bru):
-	global brutes
-	brutes += bru
-
-addMode("a", mode_a, 0)
-addMode("A", mode_A, 0)
-addMode("N", mode_N, 0)
-addMode("s", mode_s, 0)
-addMode("o", mode_o, 1)
-# /Essential modes
 
 for mode in modes:
 	for m in mode_list:
