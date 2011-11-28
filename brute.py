@@ -88,8 +88,8 @@ for mode in modes:
 	for m in mode_list:
 		if mode == m[0]:
 			executing = []
-			for ex in range(1, m[2]+1):
-				executing.append(sys.argv[3])
+			for ex in range(m[2]):
+				executing.append(sys.argv[ex+3])
 			m[1](*executing)
 
 min_chars = 1
@@ -139,7 +139,7 @@ while True:
 
 current = 0
 brute = ""
-for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
+for b in xrange(possibilities):
 	if len(rainbows) > 0 and b < len(rainbows):
 		brute = rainbows[b]
 	else:
@@ -147,6 +147,7 @@ for b in xrange(base**(min_chars-1)-1, (base**max_chars)+len(rainbows)):
 		digits = []
 		while True:
 			digit = num % base
+			digit -= 1
 			digits.append(digit)
 			num = num // base
 			if num == 0: break
