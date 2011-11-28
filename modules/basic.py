@@ -77,10 +77,10 @@ def mode_f(failstring):
 	global fail
 	fail = str(failstring)
 
-def mode_r(rainbow):
+def mode_L(rainbow):
 	global rainbows
 	rainbow_on = True
-	f = open("./rainbows/" + rainbow, "r")
+	f = open("./passwords/" + rainbow, "r")
 	for r in f.readlines():
 		rainbows.append(r[:-1])
 
@@ -100,6 +100,6 @@ def __init__(self):
 	self.addMode("c", mode_c, 1)
 	self.addMode("l", mode_l, 1)
 	self.addMode("f", mode_f, 1)
-	self.addMode("r", mode_r, 1)
+	self.addMode("L", mode_L, 1)
 	self.addMode("t", mode_t, 0)
 	self.addMode("d", mode_d, 0)

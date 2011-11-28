@@ -52,7 +52,7 @@ import sys
 import math
 import hashlib
 
-version = "0.9.7_1"
+version = "0.9.7_3"
 
 f = open("./logs/brute.log", "w")
 
@@ -84,12 +84,15 @@ brutes = ""
 execfile("modes.py")
 # /Modes
 
+argc = 0
+
 for mode in modes:
 	for m in mode_list:
 		if mode == m[0]:
 			executing = []
 			for ex in range(m[2]):
-				executing.append(sys.argv[ex+3])
+				executing.append(sys.argv[ex+argc+3])
+				argc += m[2]
 			m[1](*executing)
 
 min_chars = 1
