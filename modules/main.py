@@ -80,7 +80,7 @@ def mode_f(failstring):
 def mode_r(rainbow):
 	global rainbows
 	rainbow_on = True
-	f = open(rainbow, "r")
+	f = open("./rainbows/" + rainbow, "r")
 	for r in f.readlines():
 		rainbows.append(r[:-1])
 

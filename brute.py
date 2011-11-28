@@ -52,11 +52,16 @@ import sys
 import math
 import hashlib
 
-version = "0.9.6"
+version = "0.9.7"
 
 f = open("./logs/brute.log", "w")
 
 def log(status, message):
+	status_raw = ""
+	for i in range(3-len(status)):
+		status_raw += " "
+	status_raw += status
+	status = status_raw
 	print "[%s] [%s] %s" % (time.strftime("%d.%m.%y|%H:%M:%S"), status, message)
 	f.write("[%s] [%s] %s\n" % (time.strftime("%d.%m.%y|%H:%M:%S"), status, message))
 
@@ -99,7 +104,7 @@ if logfile != None:
 
 start_time = time.time()
 
-log(":)", "Simple Bruteforcer [:|] Version %s [:(]" % version)
+log(":)", "Simple Bruteforcer [ :|] Version %s [ :(]" % version)
 log(">:|", "Attacking '%s'..." % burl)
 log(">:)", "Brutes: '%s'" % brutes)
 log(">:)", "Fail-string: '%s'" % fail)
@@ -113,8 +118,9 @@ log(">:)", "Maximum characters: %d" % max_chars)
 log(":|", "Starting bruteforce in 5 seconds.")
 
 possibilities = 1
-for i in range(min_chars-1, max_chars+len(rainbows), 1):
+for i in range(min_chars-1, max_chars, 1):
 	possibilities *= len(brutes)
+possibilities += len(rainbows)
 possibilities -= 1
 
 status = 0
