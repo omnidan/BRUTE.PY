@@ -52,7 +52,7 @@ import sys
 import math
 import hashlib
 
-version = "0.9.7_3"
+version = "0.9.8"
 
 f = open("./logs/brute.log", "w")
 
