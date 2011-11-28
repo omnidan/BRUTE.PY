@@ -46,8 +46,9 @@
 ###########################################################################
 
 def mode_E(): # If arguments are defined, put them into the brackets!
-	log(":)", "Using the example module!") # Logging function
+	log(":)", "Using the example module mode!") # Logging function
 
 def __init__(self):
 	#self.addMode(MODE, FUNCTION, ARGUMENTS)
 	self.addMode("E", mode_E, 0)
+	log(":)", "Using the example module!") # Logging function

@@ -65,6 +65,9 @@ def log(status, message):
 	print "[%s] [%s] %s" % (time.strftime("%d.%m.%y|%H:%M:%S"), status, message)
 	f.write("[%s] [%s] %s\n" % (time.strftime("%d.%m.%y|%H:%M:%S"), status, message))
 
+log(":)", "BRUTE.PY Bruteforcer [ :|] Version %s [ :(]" % version)
+log(":)", "	by Daniel0108 #theblackmatrix")
+
 if len(sys.argv) < 3:
 	log(">:(", "You didn't specify an URL and/or modes")
 	exit()
@@ -106,8 +109,6 @@ if logfile != None:
 	f = open("./logs/" + logfile, "w")
 
 start_time = time.time()
-
-log(":)", "Simple Bruteforcer [ :|] Version %s [ :(]" % version)
 log(">:|", "Attacking '%s'..." % burl)
 log(">:)", "Brutes: '%s'" % brutes)
 log(">:)", "Fail-string: '%s'" % fail)
